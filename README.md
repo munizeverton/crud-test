@@ -19,8 +19,8 @@ Para se candidatar é simples:
 
 + Envie um Pull Request utlizando o branch que você criou através do bitbucket;
 
-[Questionário](QUESTIONS.md)
+[Questionário](master/QUESTIONS.md)
 
-[Teste Prático](TEST.md)
+[Teste Prático](master/TEST.md)
 
 Boa sorte!
