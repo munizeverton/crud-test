@@ -9,18 +9,14 @@ sendo constituido de um questionário simples com algumas questões sobre conhec
 
 Para se candidatar é simples:
 
-+ Clone este repositório;
++ Faça um fork deste repositório;
 
-+ Crie um branch com o seu nome, exemplo: `git checkout -b lucas-oliveira`;
++ Crie um branch com o seu nome;
 
-+ Preencha o questionário;
++ Preencha o questionário que está em QUESTIONS.md;
 
-+ Implemente o teste prático, dentro da pasta "src" no repositório;
++ Para o teste prático, siga as instruções em TEST.md;
 
 + Envie um Pull Request utlizando o branch que você criou através do bitbucket;
-
-[Questionário](master/QUESTIONS.md)
-
-[Teste Prático](master/TEST.md)
 
 Boa sorte!
