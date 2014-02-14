@@ -2,7 +2,7 @@
 
 1. Quais foram os últimos dois livros técnicos que você leu?
 
-2. Quais foram os últimos dois framework/CMS que você trabalho?
+2. Quais foram os últimos dois framework/CMS que você trabalhou?
 
 3. Descreva os principais pontos positivos do seu framework favorito.
 
