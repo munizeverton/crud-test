@@ -2,10 +2,11 @@
 O código do teste deverá ser armazenado dentro do diretório src deste repositório.
 
 ## Primeira etapa
-Desenvolva um CRUD, sem utilização de framework, orientado a objeto empregando uma arquitetura coerente.
+Desenvolva um CRUD (CREATE, READ, UPDATE, DELETE), sem utilização de framework, orientado a objeto empregando uma arquitetura coerente.
+
 Este CRUD deverá gerenciar Páginas Web, que são composta pelos seguintes campos:
 
-Os campos a seguir são obrigatórios, sinta-se a vontade para criar outros campos se achar necessário.
+*Os campos a seguir são obrigatórios, sinta-se a vontade para criar outros campos se achar necessário.*
 
 + id;
 
