@@ -10,6 +10,7 @@
         </thead>
         <tbody>
         <?php
+        if(count($paginas)){
             foreach($paginas as $pagina){
                 echo '<tr>',
                         '<td><a href="view.php?id=' . $pagina['id'] . '">' . $pagina['title'] . '</a></td>',
@@ -19,6 +20,9 @@
                         '<td align="center"><a href="delete.php?id=' . $pagina['id'] . '" onclick="return confirm(\'Tem certeza?\')"><span class="glyphicon glyphicon-trash"></span></a></td>',
                      '</tr>';
             }
+        }else{
+            echo '<tr><td colspan="5" align="center">Nenhuma página cadastrada</td></tr>';
+        }
         ?>
         </tbody>
     </table>
