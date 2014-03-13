@@ -6,8 +6,8 @@
  * Time: 08:53
  */
 
-$config['Adapter'] = "mysql";
-$config['hostname'] = "localhost";
+$config['adapter'] = "mysql";
+$config['hostname'] = "192.168.33.11";
 $config['dbname'] = "test_crud";
 $config['user'] = "root";
 $config['password'] = "";

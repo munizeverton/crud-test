@@ -8,7 +8,8 @@ class Db_Adapter_Mysql implements Db_Adapter_Interface {
         if (!isset(self::$instance)) {
             $dsn = $config['adapter'] . ":host=" . $config['hostname'] . ";dbname=" . $config['dbname'];
             try {
-                self::$instance = new PDO($dsn, $config['user'], $config['password']);
+                $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
+                self::$instance = new PDO($dsn, $config['user'], $config['password'], $options);
             } catch (PDOException $e) {
                 die($e->getMessage());
             }

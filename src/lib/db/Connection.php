@@ -8,10 +8,10 @@
 
 class Db_Connection {
 
-    public function __construct($config) {
+    public function connect($config) {
         switch ($config['adapter']) {
             case "mysql":
-                return Db_Adapter_Interface::getInstance($config);
+                return Db_Adapter_Mysql::getInstance($config);
                 break;
         }
     }

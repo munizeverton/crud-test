@@ -1,16 +1,16 @@
 <?php
 
 abstract class Db_Model{
-	
-	protected $id;
+
+    protected $id;
 	protected $table;
 
 	public function getId(){
 		return $this->id;
 	}
 
-	public function setId(){
-		return $this->id;
+	public function setId($id){
+		$this->id = $id;
 	}
 
 	abstract protected function insert();
@@ -18,29 +18,32 @@ abstract class Db_Model{
 	abstract protected function update();
 
     public function fetchAll() {
-        $db = $this->getDb();
-        $stm = $db->prepare("select * from " . $this->_table);
-        $stm->execute();
-        return $stm->fetchAll(PDO::FETCH_ASSOC);
+        $db = $this->getDb($this->Connection);
+        $query = $db->prepare("select * from " . $this->table);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function find() {
-        $db = $this->getDb();
-        $stm = $db->prepare("select * from " . $this->_table . ' where id=:id');
-        $stm->bindValue(':id', $this->getId());
-        $stm->execute();
-        return $stm->fetch(PDO::FETCH_ASSOC);
+        $db = $this->getDb($this->Connection);
+        $query = $db->prepare("select * from " . $this->table . ' where id=:id');
+        $query->bindValue(':id', $this->getId());
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 
     public function delete() {
-        $db = $this->getDb();
-        $stm = $db->prepare("delete from " . $this->_table . ' where id=:id');
-        $stm->bindValue(':id', $this->getId());
-        return $stm->execute();
+        $db = $this->getDb($this->Connection);
+        $query = $db->prepare("delete from " . $this->table . ' where id = :id');
+        var_dump($query);
+        echo $this->getId();
+        $query->bindValue(':id', $this->getId());
+        return $query->execute();
     }
 
     public function getDb($Connection) {
-        return $Connection;
+        global $config;
+        return $Connection->connect($config);
     }
 
 }

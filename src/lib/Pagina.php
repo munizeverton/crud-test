@@ -1,15 +1,25 @@
 <?php
 
-class Pagina{
+    /**
+     * @author My Name
+     * @author My Name <my.name@example.com>
+     */
+class Pagina extends  Db_Model{
 
-    protected $tabela = 'paginas';
+    protected $table = 'paginas';
     private $title;
+    private $url;
     private $slug;
     private $description;
     private $body;
     private $author;
     private $insert_date;
     private $update_date;
+
+    public function __construct(Db_Connection $Connection)
+    {
+        $this->Connection = $Connection;
+    }
 
     /**
      * @param mixed $author
@@ -76,11 +86,28 @@ class Pagina{
     }
 
     /**
+     * @param mixed $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+        $this->setSlug($url);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
      * @param mixed $slug
      */
     public function setSlug($slug)
     {
-        $this->slug = $slug;
+        $this->slug = $this->geraSlug($slug);
     }
 
     /**
@@ -123,37 +150,69 @@ class Pagina{
         return $this->update_date;
     }
 
-    protected function insert() {
-        $db = $this->getDb();
-        $query = $db->prepare('Insert into ' . $this->_table . '(title, slug, description, body, author, insert_date, update_date)
-            Values(:title, :slug, :description, :body, :author, :insert_date, :update_date)');
+    public function insert() {
+        $db = $this->getDb($this->Connection);
+        $query = $db->prepare('Insert into ' . $this->table . ' (title, url, slug, description, body, author, insert_date, update_date)
+            Values(:title, :url, :slug, :description, :body, :author, NOW(), NOW())');
 
         $query->bindValue(':title', $this->getTitle());
+        $query->bindValue(':url', $this->getUrl());
         $query->bindValue(':slug', $this->getSlug());
         $query->bindValue(':description', $this->getDescription());
         $query->bindValue(':body', $this->getBody());
         $query->bindValue(':author', $this->getAuthor());
-        $query->bindValue(':insert_date', $this->getInsertDate());
-        $query->bindValue(':update_date', $this->getUpdateDate());
 
         return $query->execute();
     }
 
-    protected function update() {
-        $db = $this->getDb();
-        $query = $db->prepare('Update ' . $this->_table . ' SET title = :title, slug = :slug, description = :description, body = ;body,
-                                author = :author, insert_date = :insert_date, update_date = :update_date WHERE id = :id');
+    public function update() {
+        $db = $this->getDb($this->Connection);
+        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+        $query = $db->prepare('Update ' . $this->table . ' SET title = :title, url = :url, slug = :slug, description = :description, body = :body,
+                                author = :author, update_date = NOW() WHERE id = :id');
 
         $query->bindValue(':id', $this->getId());
         $query->bindValue(':title', $this->getTitle());
+        $query->bindValue(':url', $this->getUrl());
         $query->bindValue(':slug', $this->getSlug());
         $query->bindValue(':description', $this->getDescription());
         $query->bindValue(':body', $this->getBody());
         $query->bindValue(':author', $this->getAuthor());
-        $query->bindValue(':insert_date', $this->getInsertDate());
-        $query->bindValue(':update_date', $this->getUpdateDate());
 
         return $query->execute();
+    }
+
+    public function geraSlug($string){
+
+        $string = strtolower($string);
+
+        // Código ASCII das vogais
+        $ascii['a'] = range(224, 230);
+        $ascii['e'] = range(232, 235);
+        $ascii['i'] = range(236, 239);
+        $ascii['o'] = array_merge(range(242, 246), array(240, 248));
+        $ascii['u'] = range(249, 252);
+
+        // Código ASCII dos outros caracteres
+        $ascii['b'] = array(223);
+        $ascii['c'] = array(231);
+        $ascii['d'] = array(208);
+        $ascii['n'] = array(241);
+        $ascii['y'] = array(253, 255);
+
+        foreach ($ascii as $key=>$item) {
+            $acentos = '';
+            foreach ($item AS $codigo) $acentos .= chr($codigo);
+            $troca[$key] = '/['.$acentos.']/i';
+        }
+
+        $string = preg_replace(array_values($troca), array_keys($troca), $string);
+        $string = preg_replace('/[^a-z0-9]/i', '-', $string);
+        $string = preg_replace('/' . '-' . '{2,}/i', '-', $string);
+        $string = trim($string, '-');
+
+        return $string;
+
     }
 	
 
