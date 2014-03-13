@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: munizeverton
- * Date: 12/03/14
- * Time: 08:53
+ * Arquivo de configuração do banco
+ * @author Everton Muniz <munizeverton@gmail.com>
  */
 
 $config['adapter'] = "mysql";

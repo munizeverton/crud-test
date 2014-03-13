@@ -1,28 +1,81 @@
 <?php
 
-    /**
-     * @author My Name
-     * @author My Name <my.name@example.com>
-     */
-class Pagina extends  Db_Model{
 
+/**
+ * Classe Pagina
+ * @author Everton Muniz <munizeverton@gmail.com>
+ * @version 1.0
+ * @package CRUD
+ */
+class Pagina extends Db_Model{
+
+    /**
+     * @var string Tabela da entidade correspondente
+     * @access protected
+     */
     protected $table = 'paginas';
+
+    /**
+     * @var string Campo title
+     * @access private
+     */
     private $title;
+
+    /**
+     * @var string Campo url
+     * @access private
+     */
     private $url;
+
+    /**
+     * @var string Campo slug
+     * @access private
+     */
     private $slug;
+
+    /**
+     * @var string Campo description
+     * @access private
+     */
     private $description;
+
+    /**
+     * @var string Campo body
+     * @access private
+     */
     private $body;
+
+    /**
+     * @var string Campo author
+     * @access private
+     */
     private $author;
+
+    /**
+     * @var datetime Campo insert_date
+     * @access private
+     */
     private $insert_date;
+
+    /**
+     * @var datetime Campo update_date
+     * @access private
+     */
     private $update_date;
 
+    /**
+     * Construtor
+     * Recebe por injection uma instancia da classe Db_Connection
+     *
+     * @param Db_Connection $Connection
+     */
     public function __construct(Db_Connection $Connection)
     {
         $this->Connection = $Connection;
     }
 
     /**
-     * @param mixed $author
+     * @param string $author
      */
     public function setAuthor($author)
     {
@@ -30,7 +83,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAuthor()
     {
@@ -38,7 +91,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @param mixed $body
+     * @param string $body
      */
     public function setBody($body)
     {
@@ -46,7 +99,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getBody()
     {
@@ -54,7 +107,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -62,7 +115,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {
@@ -70,7 +123,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @param mixed $insert_date
+     * @param datetime $insert_date
      */
     public function setInsertDate($insert_date)
     {
@@ -78,7 +131,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @return mixed
+     * @return datetime
      */
     public function getInsertDate()
     {
@@ -86,7 +139,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @param mixed $url
+     * @param string $url
      */
     public function setUrl($url)
     {
@@ -95,7 +148,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUrl()
     {
@@ -103,7 +156,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @param mixed $slug
+     * @param string $slug
      */
     public function setSlug($slug)
     {
@@ -111,7 +164,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSlug()
     {
@@ -119,7 +172,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
     public function setTitle($title)
     {
@@ -127,7 +180,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -135,7 +188,7 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @param mixed $update_date
+     * @param datetime $update_date
      */
     public function setUpdateDate($update_date)
     {
@@ -143,13 +196,18 @@ class Pagina extends  Db_Model{
     }
 
     /**
-     * @return mixed
+     * @return datetime
      */
     public function getUpdateDate()
     {
         return $this->update_date;
     }
 
+    /**
+     * Persiste os dados do objeto no banco
+     *
+     * @return bool
+     */
     public function insert() {
         $db = $this->getDb($this->Connection);
         $query = $db->prepare('Insert into ' . $this->table . ' (title, url, slug, description, body, author, insert_date, update_date)
@@ -165,6 +223,11 @@ class Pagina extends  Db_Model{
         return $query->execute();
     }
 
+    /**
+     * Atualiza os dados do objeto no banco
+     *
+     * @return bool
+     */
     public function update() {
         $db = $this->getDb($this->Connection);
         $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
@@ -182,6 +245,12 @@ class Pagina extends  Db_Model{
         return $query->execute();
     }
 
+    /**
+     * Gera um slug apartir de uma url
+     *
+     * @param $string
+     * @return string
+     */
     public function geraSlug($string){
 
         $string = strtolower($string);

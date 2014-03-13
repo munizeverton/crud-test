@@ -1,13 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: munizeverton
- * Date: 12/03/14
- * Time: 08:09
- */
 
+/**
+ * Classe Db_Connection
+ * @author Everton Muniz <munizeverton@gmail.com>
+ * @version 1.0
+ * @package CRUD
+ */
 class Db_Connection {
 
+    /**
+     * @param $config
+     * @return PDO
+     */
     public function connect($config) {
         switch ($config['adapter']) {
             case "mysql":

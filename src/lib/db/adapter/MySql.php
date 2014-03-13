@@ -1,9 +1,22 @@
 <?php
 
+/**
+ * Classe Db_Adapter_Mysql
+ * @author Everton Muniz <munizeverton@gmail.com>
+ * @version 1.0
+ * @package CRUD
+ */
 class Db_Adapter_Mysql implements Db_Adapter_Interface {
 
+    /**
+     * @var object Instancia do objeto PDO
+     */
     private static $instance;
 
+    /**
+     * @param $config
+     * @return PDO
+     */
     static function getInstance($config) {
         if (!isset(self::$instance)) {
             $dsn = $config['adapter'] . ":host=" . $config['hostname'] . ";dbname=" . $config['dbname'];

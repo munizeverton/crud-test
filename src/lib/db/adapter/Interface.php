@@ -1,8 +1,18 @@
 <?php
 
+/**
+ * Interface Adapter
+ * @author Everton Muniz <munizeverton@gmail.com>
+ * @version 1.0
+ * @package CRUD
+ */
 
 interface Db_Adapter_Interface {
-	
-	static function getInstance($config);
+
+    /**
+     * @param $config
+     * @return mixed
+     */
+    static function getInstance($config);
 
 }

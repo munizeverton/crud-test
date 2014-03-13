@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: munizeverton
- * Date: 12/03/14
- * Time: 08:50
+ * Arquivo autoload de classes
+ * @author Everton Muniz <munizeverton@gmail.com>
  */
 
 function __autoload($class_name) {

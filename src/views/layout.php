@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">CRUD - Páginas</a>
+            <a class="navbar-brand" href="index.php">CRUD - Páginas</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -44,6 +44,6 @@
     </div>
 </div>
 
-<script src="../../dist/js/bootstrap.min.js"></script>
+
 </body>
 </html>

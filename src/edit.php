@@ -1,4 +1,8 @@
 <?php
+/**
+ * Arquivo que manipula a alteração
+ * @author Everton Muniz <munizeverton@gmail.com>
+ */
 
 require_once('config/index.php');
 
