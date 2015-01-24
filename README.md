@@ -1,22 +1,22 @@
-# Aplicação para novos desenvolvedores - Klicksite
+# CRUD Teste
 
-Olá, se você chegou até aqui, provavelmente se interessou por uma de nossas vagas em aberto para desenvolvedores Backend.
+# CRUD para gerenciar Páginas Web, que são composta pelos seguintes campos:
 
-Nosso processo de avaliação é formulado para diagnosticar o grau de conhecimento em assuntos importantes do nosso ponto de vista,
-sendo constituido de um questionário simples com algumas questões sobre conhecimento técnico, e um teste prático de desenvolvimento.
+*Os campos a seguir são obrigatórios, sinta-se a vontade para criar outros campos se achar necessário.*
 
-# Como fazer sua aplicação
++ id;
 
-Para se candidatar é simples:
++ title;
 
-+ Faça um fork deste repositório;
++ slug;
 
-+ Crie um branch com o seu nome;
++ description;
 
-+ Preencha o questionário que está em QUESTIONS.md;
++ body;
 
-+ Para o teste prático, siga as instruções em TEST.md;
++ author;
 
-+ Envie um Pull Request utlizando o branch que você criou através do bitbucket;
++ insert_date;
 
-Boa sorte!
++ update_date;
+

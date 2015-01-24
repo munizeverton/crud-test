@@ -5,7 +5,7 @@
  */
 
 $config['adapter'] = "mysql";
-$config['hostname'] = "192.168.33.11";
+$config['hostname'] = "localhost";
 $config['dbname'] = "test_crud";
 $config['user'] = "root";
 $config['password'] = "";
